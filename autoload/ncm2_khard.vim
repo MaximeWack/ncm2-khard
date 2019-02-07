@@ -12,7 +12,7 @@ let g:ncm2_khard#source = extend(get(g:, 'ncm2_khard#source', {}), {
             \ 'name': 'khard',
             \ 'ready': 0,
             \ 'priority': 5,
-            \ 'mark': 'b',
+            \ 'mark': 'email',
             \ 'scope': ['mail'],
             \ 'complete_pattern': ['^To: ', '^Cc: ', '^Bcc: '],
             \ 'on_complete': 'ncm2_khard#on_complete',
@@ -24,10 +24,13 @@ func! ncm2_khard#init()
 endfunc
 
 func! ncm2_khard#on_warmup(ctx)
-    call g:ncm2_khard#proc.jobstart()
+    call g:ncm2_khard#proc.try_notify('on_warmup', a:ctx)
 endfunc
 
 func! ncm2_khard#on_complete(ctx)
     call g:ncm2_khard#proc.try_notify('on_complete', a:ctx)
 endfunc
 
+func! ncm2_khard#on_event(event)
+    call g:ncm2_khard#proc.try_notify('on_event', a:event, bufnr('%'))
+  endfunc
