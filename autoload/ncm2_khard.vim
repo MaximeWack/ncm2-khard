@@ -14,7 +14,7 @@ let g:ncm2_khard#source = extend(get(g:, 'ncm2_khard#source', {}), {
             \ 'priority': 5,
             \ 'mark': 'email',
             \ 'scope': ['mail'],
-            \ 'complete_pattern': ['^To: ', '^Cc: ', '^Bcc: '],
+            \ 'complete_pattern': ['^To: .*', '^Cc: .*', '^Bcc: .*'],
             \ 'complete_length': -1,
             \ 'on_complete': 'ncm2_khard#on_complete',
             \ 'on_warmup': 'ncm2_khard#on_warmup',
